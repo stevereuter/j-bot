@@ -1,0 +1,75 @@
+<!-- @format -->
+
+<!DOCTYPE html>
+
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+
+        <title>J-bot The Programmable Robot</title>
+        <meta name="description" content="J-bot the Programmable Robot" />
+        <meta name="author" content="Steve Reuter" />
+
+        <link rel="stylesheet" href="style/site.css" />
+        <script defer src="script/draw.js"></script>
+        <script defer src="script/sprite/spriteStatic.js"></script>
+        <script defer src="script/sprite/spriteActive.js"></script>
+        <script defer src="script/sprite/spriteManager.js"></script>
+        <script defer src="script/main.js"></script>
+    </head>
+    <body>
+        <header>
+            <h1>J-Bot The Programmable Robot</h1>
+            <p>Enter commands for J-Bot to pick up all of the items on the map and place them on the drop zones.</p>
+        </header>
+        <div class="row">
+            <div class="item hard-width-400">
+                <h2>Map</h2>
+                <div id="canvasArea">
+                    <!-- map -->
+                    <canvas
+                        id="foreground"
+                        height="400px"
+                        width="400px"
+                    ></canvas>
+                </div>
+                <div>
+                    <h3>Setup Buttons</h3>
+                    <p>Use these to edit the map.</p>
+                    <button onclick="main.setupButtonClicked('J-Bot')">
+                        Place J-Bot
+                    </button>
+                    <button onclick="main.rotate()">Rotate J-Bot</button>
+                    <button onclick="main.setupButtonClicked('Beacon')">
+                        Place Item
+                    </button>
+                    <button onclick="main.setupButtonClicked('Zone')">
+                        Place Drop Zone
+                    </button>
+                    <button onclick="main.setupButtonClicked('Wall')">
+                        Place Wall
+                    </button>
+                    <button onclick="main.setupButtonClicked('Clear')">
+                        Clear Cell
+                    </button>
+                    <!-- <button>Grid Size</button> -->
+                </div>
+            </div>
+            <div class="item">
+                <h2>Command Window</h2>
+                <p>Enter the commands below. Then click RUN. <button onclick="main.listCommands()">Help</button></p>
+                <textarea id="userCode" class="user-code"></textarea>
+                <button onclick="main.run()">Run</button>
+                <button onclick="main.reset()">Reset</button>
+            </div>
+            <div class="item">
+                <h2>Output Window</h2>
+                <p>
+                    jBot will log out messages here.
+                    <button onclick="main.clear()">Clear Console</button>
+                </p>
+                <div id="output" class="output"></div>
+            </div>
+        </div>
+    </body>
+</html>
