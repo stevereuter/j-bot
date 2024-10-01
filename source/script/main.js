@@ -542,9 +542,9 @@ var main = (function () {
         }
     }
 
-    function canTake(nextTrue, nextFalse) {
+    function canTake(canTakeAction) {
         actionQueue.push(function (next) {
-            showMessage("Checking for beacon...");
+            showMessage("Checking for item...");
             // get the current location
             const x = jBot.getX();
             const y = jBot.getY();
@@ -553,22 +553,19 @@ var main = (function () {
             // output resuts
             const hasBeacon = cellContents && cellContents === "beacon";
             let messageText = "";
-            let nextQueueItem;
             if (hasBeacon) {
                 messageText = "Item found!";
-                nextQueueItem = nextTrue;
+                canTakeAction(true);
             } else {
                 messageText = "No item found!";
-                nextQueueItem = nextFalse;
             }
             showMessage(messageText);
-            nextQueueItem(true);
             // return next
             return next;
         });
     }
 
-    function canMove(nextTrue, nextFalse) {
+    function canMove(canMoveAction) {
         actionQueue.push(function (next) {
             showMessage("Checking for wall...");
             // get the current location
@@ -595,16 +592,13 @@ var main = (function () {
             // output resuts
             const isBlocked = cellContents && cellContents === "wall";
             let messageText = "The space is ";
-            let nextQueueItem;
             if (isBlocked) {
-                nextQueueItem = nextFalse;
             } else {
                 messageText = "not ";
-                nextQueueItem = nextTrue;
+                canMoveAction(true);
             }
             messageText += "blocked!";
             showMessage(messageText);
-            nextQueueItem(true);
             return next;
         });
     }
