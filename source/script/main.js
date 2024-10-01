@@ -274,13 +274,13 @@ var main = (function () {
             "repeat(action, number of times to repeat) - repeats an action"
         );
         commands.push(
-            "canMove(true action, false action) - tests if jBot can move"
+            "canMove(true action) - tests if jBot can move, only performs action if true"
         );
         commands.push(
-            "canTake(true action, false action) - tests if jBot is on an item"
+            "canTake(true action) - tests if jBot is on an item, only performs action if true"
         );
         commands.push(
-            "canDrop(true action, false action) - tests if jBot on a drop zone"
+            "canDrop(true action) - tests if jBot on a drop zone, only performs action if true"
         );
         commands.push(
             "<br>You can also create custom commands in JavaScript that can include any of jBot's methods, such as:"
@@ -461,7 +461,7 @@ var main = (function () {
         }
     }
 
-    function canDrop(nextTrue, nextFalse) {
+    function canDrop(canDropAction) {
         actionQueue.push(function (next) {
             showMessage("Checking for zone...");
             // get the current location
@@ -472,16 +472,13 @@ var main = (function () {
             // output resuts
             const hasBeacon = cellContents && cellContents === "zone";
             let messageText = "";
-            let nextQueueItem;
             if (hasBeacon) {
                 messageText = "Zone found!";
-                nextQueueItem = nextTrue;
+                canDropAction(true);
             } else {
                 messageText = "No zone found!";
-                nextQueueItem = nextFalse;
             }
             showMessage(messageText);
-            nextQueueItem(true);
             // return next
             return next;
         });
