@@ -81,7 +81,9 @@ function SpriteManager() {
         remove: remove,
         getSprites: getSprites,
         removeAll: () => {
-            sprites.length = 0;
+            Object.keys(sprites).forEach((key) => {
+                delete sprites[key];
+            });
         },
     };
 }
