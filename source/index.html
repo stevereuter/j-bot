@@ -22,8 +22,8 @@
             <h1>J-Bot The Programmable Robot</h1>
             <p>Enter commands for J-Bot to pick up all of the items on the map and place them on the drop zones.</p>
         </header>
-        <div class="row">
-            <div class="item hard-width-400">
+        <div class="flex">
+            <div class="hard-width-400">
                 <h2>Map</h2>
                 <div id="canvasArea">
                     <!-- map -->
@@ -34,25 +34,27 @@
                     ></canvas>
                 </div>
                 <div>
-                    <h3>Setup Buttons</h3>
-                    <p>Use these to edit the map.</p>
-                    <button onclick="main.setupButtonClicked('J-Bot')">
-                        Place J-Bot
-                    </button>
-                    <button onclick="main.rotate()">Rotate J-Bot</button>
-                    <button onclick="main.setupButtonClicked('Beacon')">
-                        Place Item
-                    </button>
-                    <button onclick="main.setupButtonClicked('Zone')">
-                        Place Drop Zone
-                    </button>
-                    <button onclick="main.setupButtonClicked('Wall')">
-                        Place Wall
-                    </button>
-                    <button onclick="main.setupButtonClicked('Clear')">
-                        Clear Cell
-                    </button>
-                    <!-- <button>Grid Size</button> -->
+                    <h3>Map Editor</h3>
+                    <p>Use these buttons to edit the map.</p>
+                    <div id="editorButtons">
+                        <button onclick="main.setupButtonClicked('J-Bot')">
+                            Place J-Bot
+                        </button>
+                        <button onclick="main.rotate()">Rotate J-Bot</button>
+                        <button onclick="main.setupButtonClicked('Beacon')">
+                            Place Item
+                        </button>
+                        <button onclick="main.setupButtonClicked('Zone')">
+                            Place Drop Zone
+                        </button>
+                        <button onclick="main.setupButtonClicked('Wall')">
+                            Place Wall
+                        </button>
+                        <button onclick="main.setupButtonClicked('Clear')">
+                            Clear Cell
+                        </button>
+                        <!-- <button>Grid Size</button> -->
+                    </div>
                 </div>
             </div>
             <div class="item">

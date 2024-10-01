@@ -8,7 +8,7 @@
 }
 
 #canvasArea {
-    background-image: url("/images/background.png");
+    background-image: url("../images/background.png");
 }
 
 #canvasArea {
@@ -16,13 +16,13 @@
     width: 400px;
 }
 
-.row {
+.flex {
     display: flex;
-    flex-direction: row;
 }
 
 .item {
     padding: 20px;
+    flex-grow: 1;
 }
 
 .hard-width-400 {
@@ -40,4 +40,8 @@ header {
     padding: 10px;
 }
 
-
+#editorButtons {
+    display: flex;
+    gap: 5px;
+    flex-wrap: wrap;
+}

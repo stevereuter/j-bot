@@ -36,7 +36,7 @@ var main = (function () {
         const z = jBot.getZ();
         jBot = new SpriteStatic(canvasDraw.drawRobot, x, y, z);
         actionQueue = [];
-        showMessage('J-Bot powered down...');
+        showMessage("J-Bot powered down...");
     }
 
     function process() {
@@ -78,12 +78,12 @@ var main = (function () {
 
     // button events
     function run() {
-        addMessageToQueue('J-Bot power up...');
+        addMessageToQueue("J-Bot power up...");
         try {
             eval(commandInputElement.value);
         } catch (ex) {
             showMessage(
-                'The following exception prevented the command from being run.'
+                "The following exception prevented the command from being run."
             );
             showMessage(ex);
             actionQueue = [];
@@ -94,11 +94,11 @@ var main = (function () {
     }
 
     function clear() {
-        outputElement.innerHTML = '';
+        outputElement.innerHTML = "";
     }
 
     function clearCode() {
-        userCode.value = '';
+        userCode.value = "";
     }
 
     function isPositionValid(x, y, z) {
@@ -120,18 +120,18 @@ var main = (function () {
     }
 
     function setupButtonClicked(name) {
-        let messsageText = 'Click a cell on the grid to ';
+        let messsageText = "Click a cell on the grid to ";
         buttonClicked = name;
-        if (name == 'Clear') {
+        if (name == "Clear") {
             messsageText += name;
         } else {
-            messsageText += 'place ' + name;
+            messsageText += "place " + name;
         }
         showMessage(messsageText);
     }
 
     function placeZone(x, y) {
-        const zone = new SpriteStatic(canvasDraw.drawZone, x, y, 0, 'zone');
+        const zone = new SpriteStatic(canvasDraw.drawZone, x, y, 0, "zone");
         spriteManager.add(zone.getX(), zone.getY(), zone);
     }
 
@@ -142,7 +142,7 @@ var main = (function () {
     }
 
     function placeWall(x, y) {
-        const wall = new SpriteStatic(canvasDraw.drawWall, x, y, 0, 'wall');
+        const wall = new SpriteStatic(canvasDraw.drawWall, x, y, 0, "wall");
         spriteManager.add(wall.getX(), wall.getY(), wall);
     }
 
@@ -158,7 +158,7 @@ var main = (function () {
             x,
             y,
             0,
-            'beacon'
+            "beacon"
         );
         spriteManager.add(beacon.getX(), beacon.getY(), beacon);
     }
@@ -178,19 +178,19 @@ var main = (function () {
     function canvasClickEvent(event) {
         if (buttonClicked) {
             switch (buttonClicked) {
-                case 'J-Bot':
+                case "J-Bot":
                     jBotButtonClick(event);
                     break;
-                case 'Beacon':
+                case "Beacon":
                     beaconButtonClick(event);
                     break;
-                case 'Wall':
+                case "Wall":
                     placeWallButtonClick(event);
                     break;
-                case 'Zone':
+                case "Zone":
                     placeZoneButtonClick(event);
                     break;
-                case 'Clear':
+                case "Clear":
                     clearCellButtonClick(event);
                     break;
             }
@@ -252,38 +252,38 @@ var main = (function () {
         commands.push(
             "Using jBot's commands, move jBot around the map to pick up the items and drop them on the zones."
         );
-        commands.push('<br>Basic methods that perform an action:');
-        commands.push('move() - moves jBot one space forward');
-        commands.push('turn() - rotates jBot 90 degrees left');
-        commands.push('take() - picks up item on the same space as jBot is on');
-        commands.push('drop() - drops item on the same space as jBot is on');
-        commands.push('scan() - displays states for map and jBot');
+        commands.push("<br>Basic methods that perform an action:");
+        commands.push("move() - moves jBot one space forward");
+        commands.push("turn() - rotates jBot 90 degrees to the right");
+        commands.push("take() - picks up item on the same space as jBot is on");
+        commands.push("drop() - drops item on the same space as jBot is on");
+        commands.push("scan() - displays states for map and jBot");
         commands.push(
-            '<br>Callback methods that perform an action based on criteria:'
+            "<br>Callback methods that perform an action based on criteria:"
         );
         commands.push(
-            'repeat(action, number of times to repeat) - repeats an action'
+            "repeat(action, number of times to repeat) - repeats an action"
         );
         commands.push(
-            'canMove(true action, false action) - tests if jBot can move'
+            "canMove(true action, false action) - tests if jBot can move"
         );
         commands.push(
-            'canTake(true action, false action) - tests if jBot is on an item'
+            "canTake(true action, false action) - tests if jBot is on an item"
         );
         commands.push(
-            'canDrop(true action, false action) - tests if jBot on a drop zone'
+            "canDrop(true action, false action) - tests if jBot on a drop zone"
         );
         commands.push(
             "<br>You can also create custom commands in JavaScript that can include any of jBot's methods, such as:"
         );
         commands.push(
-            'function right() {<br>&nbsp;&nbsp;repeat(turn, 3);<br>}<br>'
+            "function right() {<br>&nbsp;&nbsp;repeat(turn, 3);<br>}<br>"
         );
         commands.push(
-            'This allows you to simply write right(); when you want jBot to turn right.'
+            "This allows you to simply write right(); when you want jBot to turn right."
         );
 
-        showMessage(commands.join('<br>'));
+        showMessage(commands.join("<br>"));
     }
 
     // jBot actions
@@ -317,7 +317,7 @@ var main = (function () {
         }
 
         if (isPositionValid(xEnd, yEnd, z)) {
-            showMessage('Moving');
+            showMessage("Moving");
             jBot = new SpriteActive(
                 canvasDraw.drawRobot,
                 x,
@@ -329,7 +329,7 @@ var main = (function () {
                 next
             );
         } else {
-            showMessage('Program error - JBot cannot move to that position');
+            showMessage("Program error - JBot cannot move to that position");
             exit();
         }
     }
@@ -347,7 +347,7 @@ var main = (function () {
             zEnd = z + 0.5;
         }
 
-        showMessage('Turning clockwise');
+        showMessage("Turning clockwise");
         jBot = new SpriteActive(
             canvasDraw.drawRobot,
             x,
@@ -362,32 +362,32 @@ var main = (function () {
 
     function takeBeacon(next) {
         let x, y, item;
-        showMessage('Taking item');
+        showMessage("Taking item");
 
         x = jBot.getX();
         y = jBot.getY();
         item = spriteManager.getType(x, y);
 
-        if (item === 'beacon') {
+        if (item === "beacon") {
             itemCount += 1;
-            showMessage('Item count: ' + itemCount);
+            showMessage("Item count: " + itemCount);
             spriteManager.remove(x, y);
             return next;
         } else {
-            showMessage('Program error - jBot cannot take item');
+            showMessage("Program error - jBot cannot take item");
             exit();
         }
     }
 
     function dropBeacon(next) {
-        showMessage('Dropping item');
+        showMessage("Dropping item");
         if (itemCount > 0) {
             let x, y, cell, sprite;
             x = jBot.getX();
             y = jBot.getY();
             cell = spriteManager.getType(x, y);
 
-            if (cell === 'zone') {
+            if (cell === "zone") {
                 // create an active zone
 
                 sprite = new SpriteStatic(
@@ -395,10 +395,10 @@ var main = (function () {
                     x,
                     y,
                     undefined,
-                    'zone',
+                    "zone",
                     itemCount
                 );
-                showMessage('Items dropped: ' + itemCount);
+                showMessage("Items dropped: " + itemCount);
                 itemCount = 0;
             } else {
                 // create a beacon
@@ -407,16 +407,14 @@ var main = (function () {
                     x,
                     y,
                     undefined,
-                    'beacon'
+                    "beacon"
                 );
             }
 
             spriteManager.add(x, y, sprite);
             return next;
         } else {
-            showMessage(
-                'Program error - JBot does not have any beacons to drop'
-            );
+            showMessage("Program error - JBot does not have any items to drop");
             exit();
         }
     }
@@ -456,21 +454,21 @@ var main = (function () {
 
     function canDrop(nextTrue, nextFalse) {
         actionQueue.push(function (next) {
-            showMessage('Checking for zone...');
+            showMessage("Checking for zone...");
             // get the current location
             const x = jBot.getX();
             const y = jBot.getY();
             // see if sprite manager has an item
             const cellContents = spriteManager.getType(x, y);
             // output resuts
-            const hasBeacon = cellContents && cellContents === 'zone';
-            let messageText = '';
+            const hasBeacon = cellContents && cellContents === "zone";
+            let messageText = "";
             let nextQueueItem;
             if (hasBeacon) {
-                messageText = 'Zone found!';
+                messageText = "Zone found!";
                 nextQueueItem = nextTrue;
             } else {
-                messageText = 'No zone found!';
+                messageText = "No zone found!";
                 nextQueueItem = nextFalse;
             }
             showMessage(messageText);
@@ -482,9 +480,9 @@ var main = (function () {
 
     function scan() {
         actionQueue.push(function (next) {
-            showMessage('Scanning...');
-            const beacons = spriteManager.getSprites('beacon');
-            const zones = spriteManager.getSprites('zone');
+            showMessage("Scanning...");
+            const beacons = spriteManager.getSprites("beacon");
+            const zones = spriteManager.getSprites("zone");
             const zoneItems = [];
             for (let id in zones) {
                 if (zones.hasOwnProperty(id)) {
@@ -501,9 +499,9 @@ var main = (function () {
                     zoneItemSum += zone.getItemCount();
                 }
             }
-            showMessage('Beacon count: ' + beacons.length);
-            showMessage('Items in zones: ' + zoneItemSum);
-            showMessage('J-Bot inventory: ' + itemCount);
+            showMessage("Item count: " + beacons.length);
+            showMessage("Items in zones: " + zoneItemSum);
+            showMessage("J-Bot inventory: " + itemCount);
             const isSuccess =
                 itemCount === 0 &&
                 beacons.length === 0 &&
@@ -511,16 +509,16 @@ var main = (function () {
                 zoneItems.length > 0 &&
                 zoneItemSum > 0;
             let messageText =
-                'Success, all items are in zones and no zones are empty.';
+                "Success, all items are in zones and no zones are empty.";
             if (!isSuccess) {
                 if (itemCount > 0) {
-                    messageText = 'jBot has not dropped all items.';
+                    messageText = "jBot has not dropped all items.";
                 } else if (beacons.length) {
-                    messageText = 'There are items not in zones on the map.';
+                    messageText = "There are items not in zones on the map.";
                 } else if (zones.length > zoneItems.length) {
-                    messageText = 'Not all zones have items';
+                    messageText = "Not all zones have items";
                 } else {
-                    messageText = 'Not all tasks are complete.';
+                    messageText = "Not all tasks are complete.";
                 }
             }
             showMessage(messageText);
@@ -536,21 +534,21 @@ var main = (function () {
 
     function canTake(nextTrue, nextFalse) {
         actionQueue.push(function (next) {
-            showMessage('Checking for beacon...');
+            showMessage("Checking for beacon...");
             // get the current location
             const x = jBot.getX();
             const y = jBot.getY();
             // see if sprite manager has an item
             const cellContents = spriteManager.getType(x, y);
             // output resuts
-            const hasBeacon = cellContents && cellContents === 'beacon';
-            let messageText = '';
+            const hasBeacon = cellContents && cellContents === "beacon";
+            let messageText = "";
             let nextQueueItem;
             if (hasBeacon) {
-                messageText = 'Beacon found!';
+                messageText = "Item found!";
                 nextQueueItem = nextTrue;
             } else {
-                messageText = 'No beacon found!';
+                messageText = "No item found!";
                 nextQueueItem = nextFalse;
             }
             showMessage(messageText);
@@ -562,7 +560,7 @@ var main = (function () {
 
     function canMove(nextTrue, nextFalse) {
         actionQueue.push(function (next) {
-            showMessage('Checking for wall...');
+            showMessage("Checking for wall...");
             // get the current location
             let x = jBot.getX();
             let y = jBot.getY();
@@ -585,16 +583,16 @@ var main = (function () {
             }
             const cellContents = spriteManager.getType(x, y);
             // output resuts
-            const isBlocked = cellContents && cellContents === 'wall';
-            let messageText = 'The space is ';
+            const isBlocked = cellContents && cellContents === "wall";
+            let messageText = "The space is ";
             let nextQueueItem;
             if (isBlocked) {
                 nextQueueItem = nextFalse;
             } else {
-                messageText = 'not ';
+                messageText = "not ";
                 nextQueueItem = nextTrue;
             }
-            messageText += 'blocked!';
+            messageText += "blocked!";
             showMessage(messageText);
             nextQueueItem(true);
             return next;
@@ -634,6 +632,7 @@ var main = (function () {
 
     function draw() {
         canvasDraw.clear();
+        // canvasDraw.grid();
         spriteManager.draw();
         jBot.draw();
     }
@@ -654,16 +653,16 @@ var main = (function () {
         let cellSize;
 
         actionQueue = [];
-        commandInputElement = document.getElementById('userCode');
-        outputElement = document.getElementById('output');
+        commandInputElement = document.getElementById("userCode");
+        outputElement = document.getElementById("output");
         timeout = 250;
-        gridSize = document.getElementById('foreground').clientWidth;
+        gridSize = document.getElementById("foreground").clientWidth;
         cellCount = 10;
         cellSize = getCellSize();
 
-        canvasDraw = new Draw('foreground', cellSize);
+        canvasDraw = new Draw("foreground", cellSize);
 
-        canvasElement = document.getElementById('foreground');
+        canvasElement = document.getElementById("foreground");
         canvasElement.onclick = canvasClickEvent;
 
         setAnimationFrame();
