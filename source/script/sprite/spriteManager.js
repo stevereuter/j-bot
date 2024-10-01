@@ -7,7 +7,7 @@ function SpriteManager() {
     // methods
     function getId(x, y) {
         let id;
-        const padding = '000';
+        const padding = "000";
 
         id = (padding + x).slice(-padding.length);
         id += (padding + y).slice(-padding.length);
@@ -37,7 +37,7 @@ function SpriteManager() {
         const id = getId(x, y);
         const sprite = sprites[id];
 
-        return sprite && sprite.getName() === 'wall';
+        return sprite && sprite.getName() === "wall";
     }
 
     function getType(x, y) {
@@ -80,5 +80,8 @@ function SpriteManager() {
         isBlocked: isBlocked,
         remove: remove,
         getSprites: getSprites,
+        removeAll: () => {
+            sprites.length = 0;
+        },
     };
 }

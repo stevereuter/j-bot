@@ -120,6 +120,10 @@ var main = (function () {
     }
 
     function setupButtonClicked(name) {
+        if (name === "ClearAll") {
+            spriteManager.removeAll();
+            return;
+        }
         let messsageText = "Click a cell on the grid to ";
         buttonClicked = name;
         if (name == "Clear") {
@@ -329,7 +333,7 @@ var main = (function () {
                 next
             );
         } else {
-            showMessage("Program error - JBot cannot move to that position");
+            showMessage("Program error - jBot cannot move to that position");
             exit();
         }
     }
@@ -414,7 +418,7 @@ var main = (function () {
             spriteManager.add(x, y, sprite);
             return next;
         } else {
-            showMessage("Program error - JBot does not have any items to drop");
+            showMessage("Program error - jBot does not have any items to drop");
             exit();
         }
     }
