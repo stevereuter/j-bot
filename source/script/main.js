@@ -260,8 +260,13 @@ var main = (function () {
         commands.push("move() - moves jBot one space forward");
         commands.push("turn() - rotates jBot 90 degrees to the right");
         commands.push("take() - picks up item on the same space as jBot is on");
-        commands.push("drop() - drops item on the same space as jBot is on");
+        commands.push(
+            "drop() - drops all items on the same space as jBot is on"
+        );
         commands.push("scan() - displays states for map and jBot");
+        commands.push(
+            "log() - displays text in the output window, can be used for identification in custom commands"
+        );
         commands.push(
             "<br>Callback methods that perform an action based on criteria:"
         );
@@ -281,10 +286,10 @@ var main = (function () {
             "<br>You can also create custom commands in JavaScript that can include any of jBot's methods, such as:"
         );
         commands.push(
-            "function right() {<br>&nbsp;&nbsp;repeat(turn, 3);<br>}<br>"
+            "function left() {<br>&nbsp;&nbsp;repeat(turn, 3);<br>}<br>"
         );
         commands.push(
-            "This allows you to simply write right(); when you want jBot to turn right."
+            "This allows you to simply write left(); when you want jBot to turn left."
         );
 
         showMessage(commands.join("<br>"));
@@ -531,6 +536,7 @@ var main = (function () {
     }
 
     function repeat(method, count) {
+        log(`Repeating ${method.name} ${count} times`);
         for (let i = 0; i < count; i += 1) {
             method();
         }
